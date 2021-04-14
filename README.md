@@ -9,6 +9,8 @@ The code will also connect to a MQTT server and will publish to a assigned topic
 - Variable Chunk Size
 - Sorted by Year/Month/Day/Hour
 - Home Assistant/iobroker integration via MQTT
+- MQTT publish status idle/recording/error
+- MQTT publish FileSize/FilePath
 - easy configuration via yaml config file.
 
 # Configuration
