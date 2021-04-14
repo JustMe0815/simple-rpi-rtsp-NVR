@@ -49,3 +49,19 @@ Configuration of RTSP Streams, file location, chunk size, MQTT connection can be
      Password: PASSWORD
      Topic: Surveillance/Recorder
      ```
+
+# Start-up
+ Once configured, you can then start the script by typing:
+
+```
+python3 recorder.py
+```
+
+# Prerequisites
+On Debian/Ubuntu
+```
+sudo apt update && sudo apt install openRTSP pip3
+```
+```
+pip3 install paho-mqtt pyyaml
+```
