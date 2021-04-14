@@ -1,0 +1,62 @@
+cameras:
+  Camera1:
+    Name: FrontDoor
+    IP: 192.168.103.10
+    Port: 554
+    Path: /ch0_0.264
+    User: USERNAME
+    Password: PASSWORD
+    Width: 1920
+    Height: 1080
+    Fps: 25
+  Camera2:
+    Name: Garage
+    IP: 192.168.103.11
+    Port: 554
+    Path: /ch0_0.264
+    User: USERNAME
+    Password: PASSWORD
+    Width: 1920
+    Height: 1080
+    Fps: 25
+  Camera3:
+    Name: BackYard1
+    IP: 192.168.103.12
+    Port: 554
+    Path: /ch0_0.264
+    User: USERNAME
+    Password: PASSWORD
+    Width: 1920
+    Height: 1080
+    Fps: 25
+  Camera4:
+    Name: BackYard2
+    IP: 192.168.103.13
+    Port: 554
+    Path: /ch0_0.264
+    User: USERNAME
+    Password: PASSWORD
+    Width: 1920
+    Height: 1080
+    Fps: 25
+  Camera5:
+    Name: BackYard3
+    IP: 192.168.102.107
+    Port: 554
+    Path: /unicast
+    User: USERNAME
+    Password: PASSWORD
+    Width: 1920
+    Height: 1080
+    Fps: 25
+Recorder:
+  Path: /PATH/TO/surveillance/recordings
+  Chunks: 300
+MQTT:
+  Enabled: True
+  ClientID: RTSP-Recoder
+  IP: 192.168.100.99
+  Port: 1886
+  User: USERNAME
+  Password: PASSWORD
+  Topic: Surveillance/Recorder
