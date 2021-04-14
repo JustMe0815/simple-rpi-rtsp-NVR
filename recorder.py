@@ -53,8 +53,7 @@ def return_filename():
     fl = fl.replace(':', '-')
     return fl
 
-def chunk_timer(camera,full_path,Camera_Name):
-    global proc
+def chunk_timer(camera,full_path,Camera_Name,proc):
     global checkthis
     global client
     print('Send termination signal')
@@ -64,8 +63,9 @@ def chunk_timer(camera,full_path,Camera_Name):
       print('FILE SIZE IS '+filesize+'MB')
       client.publish(MQTT_Topic+'/'+Camera_Name+'/FileSize', filesize +'MB')
       client.publish(MQTT_Topic+'/'+Camera_Name+'/Status', 'idle')
+      if filesize == 0.0:
+          client.publish(MQTT_Topic+'/'+Camera_Name+'/Status', 'ERROR')
     proc.send_signal(signal.SIGHUP)
-    time.sleep(1)
     os.kill(proc.pid, signal.SIGTERM)
     print(camera+' Killed')
     Recorder[camera] = False
@@ -73,7 +73,6 @@ def chunk_timer(camera,full_path,Camera_Name):
 
 def start_recording():
     global checkthis
-    global proc
     global firstrun
     global Recorder
     global client
@@ -120,8 +119,9 @@ def start_recording():
                 st = time.time()
                 with open(outfile,"wb") as outp:
                   proc = subprocess.Popen(cmd, shell=False,stdin=None, stdout=outp, stderr=None, close_fds=True)
+                  time.sleep(1)
                   print(Camera_Name+' Recording started!')
-                  threading.Timer(Recorder_Chunks, chunk_timer,[camera,full_path,Camera_Name]).start()
+                  threading.Timer(Recorder_Chunks, chunk_timer,[camera,full_path,Camera_Name,proc]).start()
 
 run()
 client.loop_forever()
