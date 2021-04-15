@@ -42,6 +42,7 @@ client.loop_start()
 def run():
     global checkthis
     checkthis=False
+    mqtt_alive()
     start_recording()
 
 def return_filename():
@@ -52,6 +53,10 @@ def return_filename():
     fl = current_time.replace(' ', '_')
     fl = fl.replace(':', '-')
     return fl
+
+def mqtt_alive():
+    client.publish(MQTT_Topic+'/status', 'alive')
+    threading.Timer(30, mqtt_alive).start()
 
 def chunk_timer(camera,full_path,Camera_Name,proc):
     global checkthis
@@ -124,4 +129,3 @@ def start_recording():
                   threading.Timer(Recorder_Chunks, chunk_timer,[camera,full_path,Camera_Name,proc]).start()
 
 run()
-client.loop_forever()
